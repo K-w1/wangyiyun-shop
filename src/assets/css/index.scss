@@ -1,0 +1,28 @@
+$theme-color:#d33a31;
+$center-width:1100px;
+
+.margin-center{
+  margin: 0 auto;
+}
+
+@mixin flex-all-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin onepx-border($bd-width,$bd-color) {
+  border: $bd-width solid $bd-color;
+}
+
+@mixin row-ellipsis($row){
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $row;
+  overflow: hidden;
+}
