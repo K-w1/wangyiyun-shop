@@ -1,28 +1,5 @@
 <template>
   <div class="wrapper" ref="wrap">
-    <!-- 头部 -->
-    <div class="header">
-      <div class="header-center margin-center">
-        <span class="logo"></span>
-        <div class="search-wrap">
-          <el-input @focus="openHotHistory" @blur="closeHotHistory" class="search-box" placeholder="请输入内容" v-model="searchText" prefix-icon="el-icon-search"></el-input>
-          <div class="hot-history" v-show="showHotHistory">
-            <span class="search-title">热门搜索</span>
-            <span v-for="(item,index) in hotSearches" :key="'hot'+index">{{item}}</span>
-            <span class="search-title">最近搜索</span>
-            <div class="history-item" v-for="(item,index) in historySearches" :key="'history'+index">
-              <span>{{item}}</span>
-              <span class="close-icon">x</span>
-            </div>
-          </div>
-        </div>
-        <div class="shopping-cart">
-          <icon-svg name="gouwuche" class="gouwuche"></icon-svg>
-          <span class="tobuy-count">{{toBuyCount>99?'...':toBuyCount}}</span>
-        </div>
-        <el-button>注册 / 登录</el-button>
-      </div>
-    </div>
     <!-- 广告轮播 -->
     <div class="coursel">
       <swiper class="swiper-wrap" ref="mySwiper" :options="swiperOptions">
@@ -74,7 +51,8 @@
         <GoodsList :list="goods.slice().concat(goods)" listTitle="热门商品"></GoodsList>
       </div>
       <!-- 右侧导航栏 -->
-      <div class="side-tab" :class="{'tab-fixed':isFixed}">
+      <SideTab :isFixed="isFixed"></SideTab>
+      <!-- <div v-if="false" class="side-tab" :class="{'tab-fixed':isFixed}">
         <div v-for="(item,index) in sideTabArr" :key="index">
           <icon-svg class="side-tab-icon" v-if="item.icon" :name="item.icon"></icon-svg>
           <span>{{item.text}}</span>
@@ -84,30 +62,18 @@
           <i class="el-icon-arrow-up"></i>
           <span>TOP</span>
         </div>
-      </div>
-    </div>
-    <!-- 底部 -->
-    <div class="footer">
-      <div class="footer-center margin-center">
-        <p>服务条款 | 隐私政策 | 意见反馈</p>
-        <p>公司版权所有</p>
-        <p>公司版权所有</p>
-        <p>公司版权所有</p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
 import GoodsList from '@components/GoodsList'
+import SideTab from '@components/SideTab'
   export default {
     data(){
       return{
-        searchText:'',
         toBuyCount:0,
-        hotSearches:['唐映枫','伞','享乐','蓝牙','耳机'],
-        historySearches:['帽子','音箱'],
-        showHotHistory:false,
         swiperOptions: {
           loop:true,
           pagination: {
@@ -244,7 +210,8 @@ import GoodsList from '@components/GoodsList'
       }
     },
     components:{
-      GoodsList
+      GoodsList,
+      SideTab
     },
     computed: {
       swiper() {
@@ -262,121 +229,22 @@ import GoodsList from '@components/GoodsList'
       document.removeEventListener('scroll', this.handleScroll)
     },
     methods:{
-      openHotHistory(){
-        this.showHotHistory=true
-      },
-      closeHotHistory(){  
-        this.showHotHistory=false
-      },
       handleScroll(e){
         console.log(document.documentElement.scrollTop,'滚动')
         if(document.documentElement.scrollTop>=300){
+          console.log('大于或者等于300')
           this.isFixed=true
         }else{
+          console.log('小于300')
           this.isFixed=false
         }
       },
-      toTop(){
-        document.documentElement.scrollTop=0
-      }
     }
   }
 </script>
 
 <style lang="scss" scoped>
 .wrapper{
-  .header{
-    height: 73px;
-    .header-center{
-      width: $center-width;
-      height: 100%;
-      @include flex-align-center;
-      .logo{
-        width: 290px;
-        height: 70px;
-        background: url('../assets/img/home_logo.png');
-        margin-right: auto;
-        cursor: pointer;
-      }
-      .search-wrap{
-        position: relative;
-        .search-box{
-          width: 300px;
-          height: 38px;
-          margin-right: 42px;
-          /deep/ .el-input__inner{
-            border-radius: 20px;
-            &:focus{
-              border-color: #DCDFE6;
-            }
-          }
-        }
-        .hot-history{
-          position: absolute;
-          top: 48px;
-          width: 300px;
-          box-shadow: 0 0 5px #aaa;
-          display: flex;
-          flex-direction: column;
-          z-index: 2;
-          span{
-            line-height: 36px;
-            color: #999;
-            padding: 0 20px;
-          }
-          .search-title{
-            color: #333;
-            font-size: 12px;
-            border-bottom: 1px solid #ddd;
-            font-weight: 600;
-          }
-          span:not(.search-title){
-            cursor: pointer;
-            &:hover{
-              background: #eee;
-            }
-          }
-          .history-item{
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            cursor: pointer;
-            &:hover{
-              background: #eee;
-            }
-          }
-        }
-      }
-      .shopping-cart{
-        margin-right: 34px;
-        position: relative;
-        .gouwuche{
-          font-size: 36px;
-          cursor: pointer;
-        }
-        .tobuy-count{
-          position: absolute;
-          top: 0;
-          right: 0;
-          width: 20px;
-          height: 20px;
-          background: $theme-color;
-          border-radius: 50%;
-          font-size: 11px;
-          @include flex-all-center;
-          color: #fff;
-          transform: translate(50%,-50%);
-        }
-      }
-      .el-button{
-        background: $theme-color;
-        color: #fff;
-        &:active{
-          border-color: $theme-color;
-        }
-      }
-    }
-  }
   .coursel{
     width: 100%;
     height: 480px;
@@ -520,93 +388,6 @@ import GoodsList from '@components/GoodsList'
           }
         }
       }
-      
-    }
-    .side-tab{
-      position: absolute;
-      top: 0;
-      right: 150px;
-      width: 62px;
-      display: flex;
-      flex-direction: column;
-      z-index: 99;
-      border: 1px solid rgba(0,0,0,.4);
-      color: #666;
-      & > div:not(:last-child){
-        width: 60px;
-        height: 60px;
-        border: 1px solid #e5e5e5;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        line-height: 22px;
-        text-align: center;
-        cursor: pointer;
-        position: relative;
-        .side-tab-icon{
-          font-size: 20px;
-          color: #333;
-        }
-        .buy-count{
-          position: absolute;
-          top: 0;
-          right: 0;
-          background: $theme-color;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          color: #fff;
-          font-size: 12px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-      & > div:last-child{
-        height: 35px;
-        background: #333;
-        color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        span:nth-child(2){
-          font-size: 12px;
-        }
-      }
-    }
-    .tab-fixed{
-      position: fixed;
-      top: 40%;
-    }
-  }
-  .footer{
-    background: rgb(242,242,242);
-    margin-top: 50px;
-    .footer-center{
-      width: $center-width;
-      height: 160px;
-      color: #666;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      p{
-        margin-top: 15px;
-      }
-    }
-  }
-  @media screen and (max-width:1582px) {
-    .side-tab{
-      right: unset!important;
-      left: 50%!important;
-      margin-left: 570px!important;
-    }
-    .tab-fixed{
-      right: unset!important;
-      left: 50%!important;
-      margin-left: 570px!important;
     }
   }
 }

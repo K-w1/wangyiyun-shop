@@ -17,6 +17,16 @@
         <div class="new-price">￥{{item.newPrice}}</div>
       </div>
     </div>
+    <!-- 分页 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page.sync="curPage"
+      :page-size="12"
+      layout="prev, pager, next, jumper"
+      background
+      :total="list.length">
+    </el-pagination>
   </div>
 </template>
 
@@ -24,6 +34,7 @@
   export default {
     data(){
       return{
+        curPage:1
         // goods:[
         //   {
         //     pic:'http://p3.music.126.net/amHv4RfrvGUX-5k3dpHzeQ==/109951163689849242.jpg?param=263x9999&quality=75',
@@ -93,6 +104,14 @@
       listTitle:{
         type:String,
         default:''
+      }
+    },
+    methods:{
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
       }
     }
   }
@@ -172,6 +191,20 @@
     }
     .good:nth-child(4n){
       margin-right: 0;
+    }
+  }
+  .el-pagination{
+    text-align: center;
+    margin-top: 30px;
+    /deep/{
+      .el-pager{
+        li.active{
+          background: $theme-color!important;
+        }
+        li:hover{
+          color: $theme-color!important;
+        }
+      }
     }
   }
 }
