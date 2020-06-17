@@ -94,7 +94,7 @@
         box-shadow: 0 0 5px #aaa;
         display: flex;
         flex-direction: column;
-        z-index: 2;
+        z-index: 3;
         background: #fff;
         span{
           line-height: 36px;

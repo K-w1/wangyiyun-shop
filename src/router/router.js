@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 // Vue.use(VueRouter)
 import Home from '@/views/Home.vue'
 import Product from '@/views/Product.vue'
+import ProductDetail from '@/views/ProductDetail.vue'
 
 
 const router=new VueRouter({
@@ -18,7 +19,11 @@ const router=new VueRouter({
     {
       path:'/product',
       component:Product
-    }
+    },
+    {
+      path:'/product/detail',
+      component:ProductDetail
+    },
   ]
 })
 
