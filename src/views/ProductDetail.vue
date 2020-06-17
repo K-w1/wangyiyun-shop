@@ -97,10 +97,14 @@
         </dit>
       </div>
     </div>
+    <!-- 右侧导航栏 -->
+    <SideTab class="side-tab"></SideTab>
   </div>
 </template>
 
 <script>
+import SideTab from '@components/SideTab'
+
   export default {
     data(){
       return{
@@ -117,6 +121,9 @@
         showMask:false,
         num:1
       }
+    },
+    components:{
+      SideTab
     },
     methods:{
       selectImg(i){
@@ -535,6 +542,10 @@
         }
       }
     }
+  }
+  .side-tab{
+    position: fixed;
+    top: 300px;
   }
 }
 </style>
