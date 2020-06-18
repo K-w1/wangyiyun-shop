@@ -148,10 +148,13 @@
           align-items: center;
           width: 500px;
           border-right: 1px solid #eee;
+          padding-left: 20px;
+          box-sizing: border-box;
           img{
             width: 80px;
             height: 80px;
             margin-right: 20px;
+            background: #eee;
           }
           .name-style{
             width: 240px;

@@ -6,6 +6,7 @@ import Product from '@/views/Product.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
 import My from '@/views/My/My.vue'
 import Order from '@/views/My/Order.vue'
+import OrderDetail from '@/views/My/OrderDetail.vue'
 import Coupon from '@/views/My/Coupon.vue'
 import Address from '@/views/My/Address.vue'
 
@@ -50,6 +51,10 @@ const router=new VueRouter({
         }
       ]
     },
+    {
+      path:'/my/order/detail',
+      component:OrderDetail
+    }
   ]
 })
 

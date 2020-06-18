@@ -15,10 +15,14 @@
         </div>
       </div>
     </div>
+    <!-- 右侧导航栏 -->
+    <SideTab class="side-tab"></SideTab>
   </div>
 </template>
 
 <script>
+import SideTab from '@components/SideTab'
+
   export default {
     data(){
       return{
@@ -42,6 +46,9 @@
           },
         ]
       }
+    },
+    components:{
+      SideTab
     },
     watch:{
       '$route'(val){
@@ -139,6 +146,10 @@
         min-height: 300px;
       }
     }
+  }
+  .side-tab{
+    position: fixed;
+    top: 300px;
   }
 }
 </style>
