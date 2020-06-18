@@ -137,7 +137,6 @@
       .right-part{
         width: 870px;
         min-height: 300px;
-        border: 1px solid pink;
       }
     }
   }
