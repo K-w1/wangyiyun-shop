@@ -51,6 +51,11 @@
         })
       }
     },
+    created(){
+      this.curIndex=this.asideArr.findIndex(item=>{
+        return item.path==this.$route.path
+      })
+    },
     methods:{
       selectTab(i,item){
         this.curIndex=i

@@ -19,6 +19,7 @@
     </div>
     <!-- 分页 -->
     <el-pagination
+      v-if="showPage"
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page.sync="curPage"
@@ -104,6 +105,10 @@
       listTitle:{
         type:String,
         default:''
+      },
+      showPage:{
+        type:Boolean,
+        default:false
       }
     },
     methods:{

@@ -52,7 +52,7 @@
         <img src="http://p4.music.126.net/IpAYL-UwrQpWDMLMX6cUog==/109951164430758455.jpg" alt="">
       </div>
       <!-- 商品列表 -->
-      <GoodsList :list="goods"></GoodsList>
+      <GoodsList :list="goods" :showPage="true"></GoodsList>
     </div>
     <!-- 右侧导航栏 -->
     <SideTab class="side-tab"></SideTab>
