@@ -2,7 +2,7 @@
   <!-- 头部 -->
   <div class="header">
     <div class="header-center margin-center">
-      <span class="logo"></span>
+      <span class="logo" @click="toHome"></span>
       <div class="search-wrap">
         <el-input @focus="openHotHistory" @blur="closeHotHistory" class="search-box" placeholder="请输入内容" v-model="searchText" prefix-icon="el-icon-search"></el-input>
         <div class="hot-history" v-show="showHotHistory">
@@ -55,6 +55,9 @@
       closeHotHistory(){  
         this.showHotHistory=false
       },
+      toHome(){
+        this.$router.push('/')
+      }
     }
   }
 </script>
