@@ -9,6 +9,7 @@ import Order from '@/views/My/Order.vue'
 import OrderDetail from '@/views/My/OrderDetail.vue'
 import Coupon from '@/views/My/Coupon.vue'
 import Address from '@/views/My/Address.vue'
+import Cart from '@/views/Cart.vue'
 
 
 const router=new VueRouter({
@@ -54,6 +55,10 @@ const router=new VueRouter({
     {
       path:'/my/order/detail',
       component:OrderDetail
+    },
+    {
+      path:'/cart',
+      component:Cart
     }
   ]
 })
